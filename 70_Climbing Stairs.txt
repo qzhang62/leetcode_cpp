@@ -1,0 +1,22 @@
+#include <map>
+class Solution {
+public:
+    map<int,int> store;
+    int climbStairs(int n) {
+        if(n==1 || n==0) return 1;
+        int res1=0, res2=0;
+        if(store.find(n-1)!=store.end()){
+            res1=store[n-1];
+        }else{
+            res1=climbStairs(n-1);
+            store[n-1]=res1;
+        }
+        if(store.find(n-2)!=store.end()){
+            res2=store[n-2];
+        }else{
+            res2=climbStairs(n-2);
+            store[n-2]=res2;
+        }
+        return res1+res2;
+    }
+};

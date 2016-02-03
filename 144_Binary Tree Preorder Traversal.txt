@@ -1,0 +1,27 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+#include <deque>
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> res;
+        if(root==NULL) return res;
+        deque<TreeNode*> que;
+        que.push_front(root);
+        while(!que.empty()){
+            TreeNode* tmp=que.front();
+            que.pop_front();
+            res.push_back(tmp->val);
+            if(tmp->right!=NULL) que.push_front(tmp->right);
+            if(tmp->left!=NULL) que.push_front(tmp->left);
+        }
+        return res;
+    }
+};
